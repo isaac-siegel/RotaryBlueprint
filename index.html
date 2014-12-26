@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>Rotary Event Share</title>
+		<meta name="description" content="A collection of events for Rotary clubs" />
+		<meta name="keywords" content="grid loading, swipe, effect, slide, masonry, web design, tutorial" />
+		<meta name="author" content="Isaac Siegel" />
+		<link rel="shortcut icon" href="../favicon.ico">
+
+        <script src="https://cdn.firebase.com/js/client/1.1.1/firebase.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <!-- AngularFire -->
+        <script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script>
+        <script src="js/eventsController.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+        <link rel="stylesheet" type="text/css" href="css/loader.css" />
+
+
+
+        <link rel="stylesheet" type="text/css" href="css/componentModal.css" />
+		<script src="js/modernizr.custom.js"></script>
+
+    </head>
+	<body ng-app="eventApp"  ng-controller="eventsController">
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+
+    <div class="container">
+			 <!--Top Navigation-->
+			<div class="codrops-top clearfix">
+                <span class="left"><a href="http://isaacsiegel.me/"><span>Isaac Siegel</span></a></span>
+
+                <span class="right"><a href="./SubmitForm/index.html"><span>+ Submit Event</span></a></span>
+                <!--<span class="right"><a class="codrops-icon codrops-icon-drop" href=""><span>+ Submit Event</span></a></span>-->
+
+            </div>
+			<header class="codrops-header">
+				<h1>Rotary Event Handbook <span>Creating a <a >bridge of ideas</a> between Rotary Clubs everywhere</span></h1>
+
+			</header>
+			<section class="grid-wrap">
+
+
+                <ul  class="grid swipe-down" id="grid">
+					<li class="title-box">
+						<h2>Sparking<a href="">Event Innovation</a></h2>
+					</li>
+                    <!--<li class="title-box">-->
+                    <!--<h2>What can you do with a little <a href="http://isaacsiegel.me/">Inspiration?</a></h2>-->
+                    <!--</li>-->
+                        <li ng-repeat="x in events" on-finish-render="test"><a class="md-trigger" data-modal="modal-{{$index+1}}" ><img src="{{x.Image_Base64}}" width="300" alt="dummy"><h3>{{x.Event_Name}}</h3></a></li>
+
+
+
+
+                </ul>
+                <div class="main clearfix">
+                    <div ng-repeat="x in events"  on-finish-render="modalDone" class="md-modal md-effect-1" id="modal-{{$index+1}}">
+                        <div class="md-content">
+                            <h3>{{x.Event_Name}}</h3>
+                            <div>
+                                <p>Submitted by: {{x.Club_Name}}</p>
+                                <!--<img src="{{x.Image_Base64}}" height="200" > <br><br>-->
+                                <!--<ul>-->
+                                    <strong>Event Details</strong> <br><div ng-bind-html="x.Event_Details | unsafe"></div>
+                                  <br><br>
+                                <table width="100%">
+                                    <tr>
+                                        <td width="50%"><strong>Event Duration</strong> <br>{{x.Event_Duration}}    <br><br></td>
+                                        <td width="50%"> <strong># of Volunteers</strong> <br>{{x.Number_Of_Volunteers}} <br><br></td>
+
+                                    </tr>
+                                </table>
+
+
+
+                                    <strong>Equipment Needed</strong> <br>{{x.Equipment}}     <br><br>
+                                <!--</ul>-->
+                                <button class="md-close">CLOSE</button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /container -->
+                <div class="md-overlay"></div><!-- the overlay element -->
+
+
+            </section>
+
+		</div><!-- /container -->
+
+
+        <script src="js/masonry.pkgd.min.js"></script>
+		<script src="js/imagesloaded.pkgd.min.js"></script>
+		<script src="js/classie.js"></script>
+		<script src="js/colorfinder-1.1.js"></script>
+		<script src="js/gridScrollFx.js"></script>
+
+        <script src="js/modalEffects.js"></script>
+        <script src="js/cssParser.js"></script>
+        <!--<script src="js/css-filters-polyfill.js"></script>-->
+
+    <script>
+
+
+//        $(document).ready(function() {
+//
+//            // Fakes the loading setting a timeout
+//            setTimeout(function() {
+//                $('body').addClass('loaded');
+//            }, 3000);
+//
+//        });
+//        var polyfilter_scriptpath = '/js/';
+
+
+//        setTimeout(function (){
+//
+//                //something you want delayed
+//
+//                new GridScrollFx( document.getElementById( 'grid' ), {
+//                    viewportFactor : 0.4
+//                } );
+//
+//
+//            }, 5000); // how long do you want the delay to be?
+
+//
+//var module = angular.module('eventApp', [])
+//        .directive('onFinishRender', function ($timeout) {
+//            return {
+//                restrict: 'A',
+//                link: function (scope, element, attr) {
+//                    if (scope.$last === true) {
+//                        $timeout(function () {
+//                            scope.$emit(attr.onFinishRender);
+//                        });
+//                    }
+//                }
+//            }
+//        });
+//
+
+
+    </script>
+	</body>
+</html>
